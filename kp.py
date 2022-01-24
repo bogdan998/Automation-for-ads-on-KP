@@ -26,7 +26,31 @@ button.click()
 
 time.sleep(3)
 
-# postaviteOglas = driver.find_element_by_xpath('//*[@id="leftNav"]/div[2]/a')
-# postaviteOglas.click()
+postaviteOglas = driver.find_element_by_xpath('//*[@id="leftNav"]/div[2]/a')
+postaviteOglas.click()
 
-# naslovOglasa = driver.find_element_by_id('data[group_suggest_text]')
+naslovOglasa = driver.find_element_by_id('data[group_suggest_text]')
+naslovOglasa.send_keys("Stephen King IT Knjiga")
+
+time.sleep(3)
+
+kategorija = driver.find_element_by_xpath('//*[@id="categorySelection"]/div/div[1]/div/span[3]')
+kategorija.click()
+
+time.sleep(3)
+
+kategorijaMeni = driver.find_element_by_xpath('//*[@id="menuGroup0"]/div[22]')
+kategorijaMeni.click()
+
+time.sleep(3)
+
+# grupa = driver.find_element_by_xpath('//*[@id="groupSelection"]/div/div[1]/div/span[3]')
+# grupa.click()
+
+# time.sleep(5)
+
+grupaMeni = driver.find_element_by_xpath('/html/body/div[2]/div/div[1]/form/div[5]/div/div/div[1]/div[3]/div/div[4]/div[2]/div[1]/span/div/div/div[2]/div/div[3]/div[3]/div[1]')
+grupaMeni.click()
+
+time.sleep(5)
+driver.quit()
