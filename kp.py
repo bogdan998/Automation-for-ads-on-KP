@@ -66,3 +66,5 @@ time.sleep(3)
 
 valuta = driver.find_element_by_xpath('//*[@id="data[currency]"]/label[1]')
 valuta.click()
+
+time.sleep(3)
