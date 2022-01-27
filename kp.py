@@ -12,8 +12,11 @@ config.read('config.ini')
 
 email = config['user']['email']
 passwd = config['user']['password']
+ime = config['user']['name']
+brTelefona = config['user']['phoneNumber']
 naslov = config['data']['title']
 deskripcija = config['data']['description']
+cena = config['data']['price']
 
 
 PATH = "C:\\Program Files (x86)\\chromedriver.exe"
@@ -73,8 +76,8 @@ korisceno.click()
 # naslovOglasa.clear()
 # naslovOglasa.send_keys("Promena")
 
-cena = driver.find_element(By.NAME,'data[price]')
-cena.send_keys('1000')
+txtCena = driver.find_element(By.NAME,'data[price]')
+txtCena.send_keys(cena)
 
 valuta = driver.find_element(By.XPATH,'//*[@id="data[currency]"]/label[1]')
 valuta.click()
@@ -93,13 +96,13 @@ time.sleep(3)
 pyautogui.write('C:\\Users\\bole\\OneDrive\\Desktop\\slika.jpg')
 pyautogui.press('enter')
 
-ime = driver.find_element(By.ID,'data[owner]')
-ime.clear()
-ime.send_keys('Neša')
+txtIme = driver.find_element(By.ID,'data[owner]')
+txtIme.clear()
+txtIme.send_keys(ime)
 
-telefon = driver.find_element(By.ID,'phone_number')
-telefon.clear()
-telefon.send_keys('0641234567')
+txtBrTelefona = driver.find_element(By.ID,'phone_number')
+txtBrTelefona.clear()
+txtBrTelefona.send_keys(brTelefona)
 
 time.sleep(40)
 
