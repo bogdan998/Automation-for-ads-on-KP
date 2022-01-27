@@ -94,3 +94,18 @@ time.sleep(60)
 
 btnSledece = driver.find_element_by_xpath('//*[@id="adFormInfo"]/div[2]/div[21]/div/input')
 btnSledece.click()
+
+time.sleep(3)
+
+chkVidljivost = driver.find_element_by_xpath('//*[@id="service-holder-none"]/div[3]/div/div[1]')
+chkVidljivost.click()
+
+btnSledece = driver.find_element_by_xpath('//*[@id="adFormPromo"]/div[4]/div/input')
+btnSledece.click()
+
+time.sleep(3)
+chkPravila = driver.find_element_by_id('accept_yes')
+chkPravila.click()
+
+btnPostaviteOglas = driver.find_element_by_xpath('//*[@id="adFormDeclaration"]/div[8]/div/input')
+btnPostaviteOglas.click()
