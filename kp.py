@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import pyautogui
 
 PATH = "C:\\Program Files (x86)\\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
@@ -71,5 +72,25 @@ valuta.click()
 frame = driver.find_element_by_id('data[description]_ifr')
 driver.switch_to.frame(frame)
 tekst = driver.find_element(By.ID,'tinymce')
-tekst.click()
 tekst.send_keys("Stephen King IT - stanje odlicno")
+
+driver.switch_to.default_content()
+# driver.execute_script("window.scrollTo(0, 100)") 
+
+slika = driver.find_element(By.XPATH,'//*[@id="addPhotoButtonInList"]/div')
+slika.click()
+time.sleep(3)
+pyautogui.write('C:\\Users\\bole\\OneDrive\\Desktop\\slika.jpg')
+pyautogui.press('enter')
+
+ime = driver.find_element(By.ID,'data[owner]')
+ime.clear()
+ime.send_keys('Neša')
+
+telefon = driver.find_element_by_id('phone_number')
+telefon.send_keys('0641234567')
+
+time.sleep(60)
+
+btnSledece = driver.find_element_by_xpath('//*[@id="adFormInfo"]/div[2]/div[21]/div/input')
+btnSledece.click()
