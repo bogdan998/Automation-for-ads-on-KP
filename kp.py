@@ -5,6 +5,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import pyautogui
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+email = config['user']['email']
+passwd = config['user']['password']
+naslov = config['data']['title']
+deskripcija = config['data']['description']
+
 
 PATH = "C:\\Program Files (x86)\\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
@@ -17,11 +27,11 @@ link.click()
 
 time.sleep(3)
 
-email = driver.find_element(By.ID,"email")
-email.send_keys("magiicall8@gmail.com")
+imejl = driver.find_element(By.ID,"email")
+imejl.send_keys(email)
 
-passwd = driver.find_element(By.ID,"password")
-passwd.send_keys("b14.....b43,,,")
+sifra = driver.find_element(By.ID,"password")
+sifra.send_keys(passwd)
 
 button = driver.find_element(By.ID,"submitButton")
 button.click()
@@ -32,7 +42,7 @@ postaviteOglas = driver.find_element(By.XPATH,'//*[@id="leftNav"]/div[2]/a')
 postaviteOglas.click()
 
 naslovOglasa = driver.find_element(By.ID,'data[group_suggest_text]')
-naslovOglasa.send_keys("Stephen King IT Knjiga")
+naslovOglasa.send_keys(naslov)
 
 # time.sleep(3)
 
@@ -72,7 +82,7 @@ valuta.click()
 frame = driver.find_element(By.ID,'data[description]_ifr')
 driver.switch_to.frame(frame)
 tekst = driver.find_element(By.ID,'tinymce')
-tekst.send_keys("Stephen King IT - stanje odlicno")
+tekst.send_keys(deskripcija)
 
 driver.switch_to.default_content()
 # driver.execute_script("window.scrollTo(0, 100)") 
@@ -91,7 +101,7 @@ telefon = driver.find_element(By.ID,'phone_number')
 telefon.clear()
 telefon.send_keys('0641234567')
 
-time.sleep(60)
+time.sleep(40)
 
 btnSledece = driver.find_element(By.XPATH,'//*[@id="adFormInfo"]/div[2]/div[21]/div/input')
 btnSledece.click()
