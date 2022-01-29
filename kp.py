@@ -69,8 +69,11 @@ grupaMeni.click()
 
 time.sleep(3)
 
-korisceno = driver.find_element(By.XPATH,'//*[@id="conditionForm"]/div[2]/div[1]/label[2]')
-korisceno.click()
+try:
+	korisceno = driver.find_element(By.XPATH,'//*[@id="conditionForm"]/div[2]/div[1]/label[2]')
+	korisceno.click()
+except:
+	pass
 
 # naslovOglasa = driver.find_element_by_id('data[name]')
 # naslovOglasa.clear()
