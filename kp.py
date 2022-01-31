@@ -80,7 +80,7 @@ try:
 	kategorijaMeni.click()
 except:
 	quit()
-# time.sleep(3)
+time.sleep(3)
 
 # grupa = driver.find_element_by_xpath('//*[@id="groupSelection"]/div/div[1]/div/span[3]')
 # grupa.click()
@@ -96,6 +96,7 @@ except:
 # grupa.send_keys('Horor')
 # time.sleep(2)
 # pyautogui.press('enter')
+
 try:
 	btnGrupa = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,'//*[@id="groupSelection"]/div/div[2]/div/div[2]/input')))
 	btnGrupa.send_keys(grupa)
@@ -105,7 +106,6 @@ except NoSuchElementException:
 	quit()
 
 time.sleep(3)
-
 try:
 	stanje = driver.find_element(By.ID,stanjeId)
 	stanje.click()
@@ -129,47 +129,76 @@ if fiksno == 'da':
 	except NoSuchElementException:
 		quit()
 
-rbtnValuta = driver.find_element(By.ID,valutaID)
-rbtnValuta.click()
+try:
+	rbtnValuta = driver.find_element(By.ID,valutaID)
+	rbtnValuta.click()
+except NoSuchElementException:
+	quit()
 
-frame = driver.find_element(By.ID,'data[description]_ifr')
-driver.switch_to.frame(frame)
-tekst = driver.find_element(By.ID,'tinymce')
-tekst.send_keys(deskripcija)
+try:
+	frame = driver.find_element(By.ID,'data[description]_ifr')
+	driver.switch_to.frame(frame)
+	tekst = driver.find_element(By.ID,'tinymce')
+	tekst.send_keys(deskripcija)
+except NoSuchElementException:
+	quit()
 
 driver.switch_to.default_content()
 # driver.execute_script("window.scrollTo(0, 100)") 
+try:
+	slika = driver.find_element(By.XPATH,'//*[@id="addPhotoButtonInList"]/div')
+	slika.click()
+	time.sleep(3)
+	pyautogui.write('C:\\Users\\bole\\OneDrive\\Desktop\\slika.jpg')
+	pyautogui.press('enter')
+except NoSuchElementException:
+	quit()
 
-slika = driver.find_element(By.XPATH,'//*[@id="addPhotoButtonInList"]/div')
-slika.click()
-time.sleep(3)
-pyautogui.write('C:\\Users\\bole\\OneDrive\\Desktop\\slika.jpg')
-pyautogui.press('enter')
+try:
+	txtIme = driver.find_element(By.ID,'data[owner]')
+	txtIme.clear()
+	txtIme.send_keys(ime)
+except NoSuchElementException:
+	quit()
 
-txtIme = driver.find_element(By.ID,'data[owner]')
-txtIme.clear()
-txtIme.send_keys(ime)
-
-txtBrTelefona = driver.find_element(By.ID,'phone_number')
-txtBrTelefona.clear()
-txtBrTelefona.send_keys(brTelefona)
+try:
+	txtBrTelefona = driver.find_element(By.ID,'phone_number')
+	txtBrTelefona.clear()
+	txtBrTelefona.send_keys(brTelefona)
+except NoSuchElementException:
+	quit()
 
 time.sleep(40)
+try:
+	btnSledece = driver.find_element(By.XPATH,'//*[@id="adFormInfo"]/div[2]/div[21]/div/input')
+	btnSledece.click()
+except NoSuchElementException:
+	quit()
 
-btnSledece = driver.find_element(By.XPATH,'//*[@id="adFormInfo"]/div[2]/div[21]/div/input')
-btnSledece.click()
+time.sleep(3)
+
+try:
+	chkVidljivost = driver.find_element(By.XPATH,'//*[@id="service-holder-none"]/div[3]/div/div[1]')
+	chkVidljivost.click()
+except NoSuchElementException:
+	quit()
+
+try:
+	btnSledece = driver.find_element(By.XPATH,'//*[@id="adFormPromo"]/div[4]/div/input')
+	btnSledece.click()
+except NoSuchElementException:
+	quit()
 
 time.sleep(3)
 
-chkVidljivost = driver.find_element(By.XPATH,'//*[@id="service-holder-none"]/div[3]/div/div[1]')
-chkVidljivost.click()
+try:
+	chkPravila = driver.find_element(By.ID,'accept_yes')
+	chkPravila.click()
+except NoSuchElementException:
+	quit()
 
-btnSledece = driver.find_element(By.XPATH,'//*[@id="adFormPromo"]/div[4]/div/input')
-btnSledece.click()
-
-time.sleep(3)
-chkPravila = driver.find_element(By.ID,'accept_yes')
-chkPravila.click()
-
-btnPostaviteOglas = driver.find_element(By.XPATH,'//*[@id="adFormDeclaration"]/div[8]/div/input')
-btnPostaviteOglas.click()
+try:
+	btnPostaviteOglas = driver.find_element(By.XPATH,'//*[@id="adFormDeclaration"]/div[8]/div/input')
+	btnPostaviteOglas.click()
+except NoSuchElementException:
+	quit()
