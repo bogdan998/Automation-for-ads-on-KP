@@ -26,7 +26,10 @@ grupa = config['data']['grupa']
 stanje = config['data']['stanje']
 stanjeId = config['stanje'][stanje]
 deskripcija = config['data']['description']
-cena = config['data']['price']
+cena = config['data']['cena']
+fiksno = config['data']['fiksno']
+valuta = config['data']['valuta']
+valutaID = config['valuta'][valuta]
 
 
 PATH = "C:\\Program Files (x86)\\chromedriver.exe"
@@ -50,23 +53,33 @@ button = driver.find_element(By.ID,"submitButton")
 button.click()
 
 time.sleep(3)
+try:
+	postaviteOglas = driver.find_element(By.XPATH,'//*[@id="leftNav"]/div[2]/a')
+	postaviteOglas.click()
+except NoSuchElementException:
+	quit()
 
-postaviteOglas = driver.find_element(By.XPATH,'//*[@id="leftNav"]/div[2]/a')
-postaviteOglas.click()
-
-naslovOglasa = driver.find_element(By.ID,'data[group_suggest_text]')
-naslovOglasa.send_keys(naslov)
+try:
+	naslovOglasa = driver.find_element(By.ID,'data[group_suggest_text]')
+	naslovOglasa.send_keys(naslov)
+except NoSuchElementException:
+	quit()
 
 # time.sleep(3)
 
-btnKategorija = driver.find_element(By.XPATH,'//*[@id="categorySelection"]/div/div[1]/div/span[3]')
-btnKategorija.click()
+try:
+	btnKategorija = driver.find_element(By.XPATH,'//*[@id="categorySelection"]/div/div[1]/div/span[3]')
+	btnKategorija.click()
+except NoSuchElementException:
+	quit()
 
 # time.sleep(3)
 
-kategorijaMeni = driver.find_element(By.XPATH,kategorijaXPATH)
-kategorijaMeni.click()
-
+try:
+	kategorijaMeni = driver.find_element(By.XPATH,kategorijaXPATH)
+	kategorijaMeni.click()
+except:
+	quit()
 # time.sleep(3)
 
 # grupa = driver.find_element_by_xpath('//*[@id="groupSelection"]/div/div[1]/div/span[3]')
@@ -83,10 +96,13 @@ kategorijaMeni.click()
 # grupa.send_keys('Horor')
 # time.sleep(2)
 # pyautogui.press('enter')
-btnGrupa = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,'//*[@id="groupSelection"]/div/div[2]/div/div[2]/input')))
-btnGrupa.send_keys(grupa)
-time.sleep(2)
-pyautogui.press('enter')
+try:
+	btnGrupa = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,'//*[@id="groupSelection"]/div/div[2]/div/div[2]/input')))
+	btnGrupa.send_keys(grupa)
+	time.sleep(3)
+	pyautogui.press('enter')
+except NoSuchElementException:
+	quit()
 
 time.sleep(3)
 
@@ -100,11 +116,21 @@ except:
 # naslovOglasa.clear()
 # naslovOglasa.send_keys("Promena")
 
-txtCena = driver.find_element(By.NAME,'data[price]')
-txtCena.send_keys(cena)
+try:
+	txtCena = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.NAME,'data[price]')))
+	txtCena.send_keys(cena)
+except NoSuchElementException:
+	quit()
 
-valuta = driver.find_element(By.XPATH,'//*[@id="data[currency]"]/label[1]')
-valuta.click()
+if fiksno == 'da':
+	try:
+		chkFiksno = driver.find_element(By.ID,"data[price_fixed]")
+		chkFiksno.click()
+	except NoSuchElementException:
+		quit()
+
+rbtnValuta = driver.find_element(By.ID,valutaID)
+rbtnValuta.click()
 
 frame = driver.find_element(By.ID,'data[description]_ifr')
 driver.switch_to.frame(frame)
