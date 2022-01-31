@@ -9,12 +9,18 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read('config.ini')
+config.read('xpath.ini')
 
 email = config['user']['email']
 passwd = config['user']['password']
 ime = config['user']['name']
 brTelefona = config['user']['phoneNumber']
 naslov = config['data']['title']
+kategorija = config['data']['kategorija']
+kategorijaXPATH = config['kategorija'][kategorija]
+grupa = config['data']['grupa']
+stanje = config['data']['stanje']
+stanjeId = config['stanje'][stanje]
 deskripcija = config['data']['description']
 cena = config['data']['price']
 
@@ -49,15 +55,15 @@ naslovOglasa.send_keys(naslov)
 
 # time.sleep(3)
 
-kategorija = driver.find_element(By.XPATH,'//*[@id="categorySelection"]/div/div[1]/div/span[3]')
-kategorija.click()
+btnKategorija = driver.find_element(By.XPATH,'//*[@id="categorySelection"]/div/div[1]/div/span[3]')
+btnKategorija.click()
 
 # time.sleep(3)
 
-kategorijaMeni = driver.find_element(By.XPATH,'//*[@id="menuGroup0"]/div[22]')
+kategorijaMeni = driver.find_element(By.XPATH,kategorijaXPATH)
 kategorijaMeni.click()
 
-time.sleep(3)
+# time.sleep(3)
 
 # grupa = driver.find_element_by_xpath('//*[@id="groupSelection"]/div/div[1]/div/span[3]')
 # grupa.click()
@@ -69,16 +75,20 @@ time.sleep(3)
 # grupaMeni.click()
 
 #find element by text input
-grupa = driver.find_element(By.XPATH,'//*[@id="groupSelection"]/div/div[2]/div/div[2]/input')
-grupa.send_keys('Horor')
+# grupa = driver.find_element(By.XPATH,'//*[@id="groupSelection"]/div/div[2]/div/div[2]/input')
+# grupa.send_keys('Horor')
+# time.sleep(2)
+# pyautogui.press('enter')
+btnGrupa = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,'//*[@id="groupSelection"]/div/div[2]/div/div[2]/input')))
+btnGrupa.send_keys(grupa)
+time.sleep(2)
 pyautogui.press('enter')
-
 
 time.sleep(3)
 
 try:
-	korisceno = driver.find_element(By.XPATH,'//*[@id="conditionForm"]/div[2]/div[1]/label[2]')
-	korisceno.click()
+	stanje = driver.find_element(By.ID,stanjeId)
+	stanje.click()
 except:
 	pass
 
