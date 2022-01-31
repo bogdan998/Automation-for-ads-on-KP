@@ -7,10 +7,21 @@ import time
 import pyautogui
 import configparser
 import os
+import docx
 
 
 brSlika = len(os.listdir('D:\\programiranje\\pajton\\selenijum\\kp_automate\\slike'))
 print(brSlika)
+
+def getDescription(file):
+	doc = docx.Document(file)
+	fullText = []
+	for para in doc.paragraphs:
+		fullText.append(para.text)
+	return '\n'.join(fullText)
+
+description = getDescription('D:\\programiranje\\pajton\\selenijum\\kp_automate\\description.docx')
+
 config = configparser.ConfigParser()
 try:
 	config.read('config.ini')
@@ -84,6 +95,7 @@ try:
 	kategorijaMeni.click()
 except:
 	quit()
+
 time.sleep(3)
 
 # grupa = driver.find_element_by_xpath('//*[@id="groupSelection"]/div/div[1]/div/span[3]')
@@ -143,7 +155,7 @@ try:
 	frame = driver.find_element(By.ID,'data[description]_ifr')
 	driver.switch_to.frame(frame)
 	tekst = driver.find_element(By.ID,'tinymce')
-	tekst.send_keys(deskripcija)
+	tekst.send_keys(description)
 except NoSuchElementException:
 	quit()
 
