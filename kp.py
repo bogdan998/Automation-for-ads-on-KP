@@ -64,8 +64,15 @@ time.sleep(3)
 
 # time.sleep(5)
 
-grupaMeni = driver.find_element(By.XPATH,'/html/body/div[2]/div/div[1]/form/div[5]/div/div/div[1]/div[3]/div/div[4]/div[2]/div[1]/span/div/div/div[2]/div/div[3]/div[3]/div[1]')
-grupaMeni.click()
+# find element by clicking
+# grupaMeni = driver.find_element(By.XPATH,'/html/body/div[2]/div/div[1]/form/div[5]/div/div/div[1]/div[3]/div/div[4]/div[2]/div[1]/span/div/div/div[2]/div/div[3]/div[3]/div[1]')
+# grupaMeni.click()
+
+#find element by text input
+grupa = driver.find_element(By.XPATH,'//*[@id="groupSelection"]/div/div[2]/div/div[2]/input')
+grupa.send_keys('Horor')
+pyautogui.press('enter')
+
 
 time.sleep(3)
 
