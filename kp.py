@@ -6,7 +6,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import pyautogui
 import configparser
+import os
 
+
+brSlika = len(os.listdir('D:\\programiranje\\pajton\\selenijum\\kp_automate\\slike'))
+print(brSlika)
 config = configparser.ConfigParser()
 try:
 	config.read('config.ini')
@@ -100,7 +104,7 @@ time.sleep(3)
 try:
 	btnGrupa = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,'//*[@id="groupSelection"]/div/div[2]/div/div[2]/input')))
 	btnGrupa.send_keys(grupa)
-	time.sleep(3)
+	time.sleep(4)
 	pyautogui.press('enter')
 except NoSuchElementException:
 	quit()
@@ -147,10 +151,11 @@ driver.switch_to.default_content()
 # driver.execute_script("window.scrollTo(0, 100)") 
 try:
 	slika = driver.find_element(By.XPATH,'//*[@id="addPhotoButtonInList"]/div')
-	slika.click()
-	time.sleep(3)
-	pyautogui.write('C:\\Users\\bole\\OneDrive\\Desktop\\slika.jpg')
-	pyautogui.press('enter')
+	for x in range(brSlika):
+		slika.click()
+		time.sleep(3)
+		pyautogui.write('D:\\programiranje\\pajton\\selenijum\\kp_automate\\slike\\{}.jpg'.format(x+1))
+		pyautogui.press('enter')
 except NoSuchElementException:
 	quit()
 
@@ -168,7 +173,7 @@ try:
 except NoSuchElementException:
 	quit()
 
-time.sleep(40)
+time.sleep(40*brSlika)
 try:
 	btnSledece = driver.find_element(By.XPATH,'//*[@id="adFormInfo"]/div[2]/div[21]/div/input')
 	btnSledece.click()
