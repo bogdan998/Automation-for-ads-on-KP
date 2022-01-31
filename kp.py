@@ -8,8 +8,12 @@ import pyautogui
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config.ini')
-config.read('xpath.ini')
+try:
+	config.read('config.ini')
+	config.read('xpath.ini')
+except UnicodeDecodeError:
+	print("Koristili ste č,ć,đ,š ili ž. Promenite pa pokušajte ponovo")
+	quit()
 
 email = config['user']['email']
 passwd = config['user']['password']
