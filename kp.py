@@ -9,9 +9,9 @@ import configparser
 import os
 import docx
 
+# slikeDir = os.getcwd() 
+brSlika = len(os.listdir(os.getcwd()+'\\slike'))
 
-brSlika = len(os.listdir('D:\\programiranje\\pajton\\selenijum\\kp_automate\\slike'))
-print(brSlika)
 
 def getDescription(file):
 	doc = docx.Document(file)
@@ -164,9 +164,10 @@ driver.switch_to.default_content()
 try:
 	slika = driver.find_element(By.XPATH,'//*[@id="addPhotoButtonInList"]/div')
 	for x in range(brSlika):
+
 		slika.click()
 		time.sleep(3)
-		pyautogui.write('D:\\programiranje\\pajton\\selenijum\\kp_automate\\slike\\{}.jpg'.format(x+1))
+		pyautogui.write(os.getcwd()+'\\slike\\{}.jpg'.format(x+1))
 		pyautogui.press('enter')
 except NoSuchElementException:
 	quit()
