@@ -36,19 +36,6 @@ passwd = config['user']['password']
 ime = config['user']['name']
 brTelefona = config['user']['phoneNumber']
 
-naslov = config['data']['title']
-kategorija = config['data']['kategorija']
-kategorijaXPATH = config['kategorija'][kategorija]
-grupa = config['data']['grupa']
-stanje = config['data']['stanje']
-stanjeId = config['stanje'][stanje]
-deskripcija = config['data']['description']
-cena = config['data']['cena']
-fiksno = config['data']['fiksno']
-valuta = config['data']['valuta']
-valutaID = config['valuta'][valuta]
-
-print(brojOglasa)
 PATH = "C:\\Program Files (x86)\\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 
@@ -241,3 +228,4 @@ for i in range(1,int(brojOglasa)+1):
 		btnPostaviteOglas.click()
 	except NoSuchElementException:
 		quit()
+	time.sleep(15)
