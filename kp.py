@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import pyautogui
 import configparser
-import os
+import os, os.path
 import docx
 
 # slikeDir = os.getcwd() 
@@ -20,7 +20,7 @@ def getDescription(file):
 		fullText.append(para.text)
 	return '\n'.join(fullText)
 
-description = getDescription('D:\\programiranje\\pajton\\selenijum\\kp_automate\\description.docx')
+description = getDescription(os.getcwd()+'\\description.docx')
 
 config = configparser.ConfigParser()
 try:
@@ -68,12 +68,14 @@ button = driver.find_element(By.ID,"submitButton")
 button.click()
 
 time.sleep(3)
-try:
-	postaviteOglas = driver.find_element(By.XPATH,'//*[@id="leftNav"]/div[2]/a')
-	postaviteOglas.click()
-except NoSuchElementException:
-	quit()
+# try: // nece trenutno
+# 	postaviteOglas = driver.find_element(By.XPATH,'//*[@id="leftNav"]/div[2]/a')
+# 	postaviteOglas.click()
+# except NoSuchElementException:
+# 	quit()
 
+driver.get("https://www.kupujemprodajem.com/oglasi.php?action=new")
+time.sleep(3)
 try:
 	naslovOglasa = driver.find_element(By.ID,'data[group_suggest_text]')
 	naslovOglasa.send_keys(naslov)
