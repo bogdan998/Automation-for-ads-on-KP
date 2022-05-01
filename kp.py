@@ -20,7 +20,6 @@ def getDescription(file):
 		fullText.append(para.text)
 	return '\n'.join(fullText)
 
-description = getDescription(os.getcwd()+'\\description.docx')
 
 config = configparser.ConfigParser()
 try:
@@ -64,7 +63,7 @@ time.sleep(3) #ulogovan
 # 	quit()
 
 for i in range(1,int(brojOglasa)+1):
-	config.read(f"artikal{i}.ini")
+	config.read(f"artikal{i}\\artikal{i}.ini")
 
 	naslov = config['data']['title']
 	kategorija = config['data']['kategorija']
@@ -78,7 +77,10 @@ for i in range(1,int(brojOglasa)+1):
 	valuta = config['data']['valuta']
 	valutaID = config['valuta'][valuta]
 
-	brSlika = len(os.listdir(os.getcwd()+f'\\artikal{i}_slike'))
+	description = getDescription(os.getcwd()+f'\\artikal{i}\\description.docx')
+
+
+	brSlika = len(os.listdir(os.getcwd()+f'\\artikal{i}\\artikal{i}_slike'))
 
 	driver.get("https://www.kupujemprodajem.com/oglasi.php?action=new")
 	time.sleep(3)
@@ -175,7 +177,7 @@ for i in range(1,int(brojOglasa)+1):
 
 			slika.click()
 			time.sleep(3)
-			pyautogui.write(os.getcwd()+'\\artikal{}_slike\\{}.jpg'.format(i,x+1))
+			pyautogui.write(os.getcwd()+'\\artikal{}\\artikal{}_slike\\{}.jpg'.format(i,i,x+1))
 			pyautogui.press('enter')
 	except NoSuchElementException:
 		quit()
@@ -229,3 +231,5 @@ for i in range(1,int(brojOglasa)+1):
 	except NoSuchElementException:
 		quit()
 	time.sleep(15)
+
+print("over :)")
