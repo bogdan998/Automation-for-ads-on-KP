@@ -8,10 +8,16 @@ import pyautogui
 import configparser
 import os, os.path
 import docx
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 # slikeDir = os.getcwd() 
 
-
+chrome_options = Options()
+chrome_options.add_experimental_option("detach", True)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options = chrome_options)
 	
 def getDescription(file):
 	doc = docx.Document(file)
@@ -35,13 +41,14 @@ passwd = config['user']['password']
 ime = config['user']['name']
 brTelefona = config['user']['phoneNumber']
 
-PATH = "C:\\Program Files (x86)\\chromedriver.exe"
-driver = webdriver.Chrome(PATH)
+# PATH = "C:\\Program Files (x86)\\chromedriver.exe"
+# driver = webdriver.Chrome(PATH)
 
 driver.get("https://www.kupujemprodajem.com/")
 
 
 link = driver.find_element(By.XPATH,'//*[@id="bodyTag"]/div[9]/div/div[1]/div[2]/div/div/div/div[4]/div/span')
+time.sleep(3)
 link.click()
 
 time.sleep(3)
@@ -196,7 +203,7 @@ for i in range(1,int(brojOglasa)+1):
 	except NoSuchElementException:
 		quit()
 
-	time.sleep(40*brSlika)
+	time.sleep(60*brSlika)
 	try:
 		btnSledece = driver.find_element(By.XPATH,'//*[@id="adFormInfo"]/div[2]/div[21]/div/input')
 		btnSledece.click()
